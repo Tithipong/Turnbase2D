@@ -415,6 +415,14 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 389405424}
+    - target: {fileID: 7907800323172185597, guid: a0f7f730aeca05c4daeacbfdeccd928b, type: 3}
+      propertyPath: magicCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7907800323172185597, guid: a0f7f730aeca05c4daeacbfdeccd928b, type: 3}
+      propertyPath: minAttackMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -506,8 +514,8 @@ GameObject:
   - component: {fileID: 389405429}
   - component: {fileID: 389405428}
   - component: {fileID: 389405427}
-  - component: {fileID: 389405426}
-  - component: {fileID: 389405425}
+  - component: {fileID: 389405431}
+  - component: {fileID: 389405430}
   m_Layer: 0
   m_Name: GiantEnemy
   m_TagString: Enemy
@@ -515,44 +523,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &389405425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389405424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d105c01753caf54aa807574ce9dfecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 389405427}
-  healthFill: {fileID: 916025788}
-  magicFill: {fileID: 1798571097}
-  health: 100
-  magic: 100
-  melee: 10
-  magicrange: 10
-  defense: 5
-  speed: 60
-  experience: 0
-  nextActTurn: 0
---- !u!114 &389405426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389405424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb187f349ef51e4ebf14f389d9a5814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleePrefab: {fileID: 1872737861}
-  rangePrefab: {fileID: 258531071}
-  faceIcon: {fileID: -918269196, guid: 7c8fca462586ad34cbc341e212938e74, type: 3}
 --- !u!95 &389405427
 Animator:
   serializedVersion: 5
@@ -643,6 +613,44 @@ Transform:
   - {fileID: 258531073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389405430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389405424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d105c01753caf54aa807574ce9dfecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 389405427}
+  healthFill: {fileID: 916025788}
+  magicFill: {fileID: 1798571097}
+  health: 100
+  magic: 50
+  melee: 5
+  magicrange: 1
+  defense: 1
+  speed: 20
+  experience: 0
+  nextActTurn: 0
+--- !u!114 &389405431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389405424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb187f349ef51e4ebf14f389d9a5814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePrefab: {fileID: 1872737861}
+  rangePrefab: {fileID: 258531071}
+  faceIcon: {fileID: -918269196, guid: 7c8fca462586ad34cbc341e212938e74, type: 3}
 --- !u!1 &447591264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac18be4213bc4047b21e131176f1819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleText: {fileID: 1706198856}
   battleMenu: {fileID: 1932590406}
 --- !u!4 &1071810270
 Transform:
@@ -2172,8 +2181,8 @@ GameObject:
   - component: {fileID: 1348435273}
   - component: {fileID: 1348435272}
   - component: {fileID: 1348435271}
-  - component: {fileID: 1348435270}
-  - component: {fileID: 1348435269}
+  - component: {fileID: 1348435275}
+  - component: {fileID: 1348435274}
   m_Layer: 0
   m_Name: WizardHero
   m_TagString: Hero
@@ -2181,44 +2190,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1348435269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348435268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d105c01753caf54aa807574ce9dfecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1348435271}
-  healthFill: {fileID: 605009697}
-  magicFill: {fileID: 1134637699}
-  health: 100
-  magic: 100
-  melee: 10
-  magicrange: 10
-  defense: 5
-  speed: 30
-  experience: 0
-  nextActTurn: 0
---- !u!114 &1348435270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348435268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb187f349ef51e4ebf14f389d9a5814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleePrefab: {fileID: 1684037133}
-  rangePrefab: {fileID: 766960226}
-  faceIcon: {fileID: 21300000, guid: 40bf36bbc4d633542b241d7dd1038994, type: 3}
 --- !u!95 &1348435271
 Animator:
   serializedVersion: 5
@@ -2309,6 +2280,44 @@ Transform:
   - {fileID: 766960228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348435274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348435268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d105c01753caf54aa807574ce9dfecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1348435271}
+  healthFill: {fileID: 605009697}
+  magicFill: {fileID: 1134637699}
+  health: 100
+  magic: 100
+  melee: 1
+  magicrange: 10
+  defense: 1
+  speed: 60
+  experience: 0
+  nextActTurn: 0
+--- !u!114 &1348435275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348435268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb187f349ef51e4ebf14f389d9a5814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePrefab: {fileID: 1684037133}
+  rangePrefab: {fileID: 766960226}
+  faceIcon: {fileID: 21300000, guid: 40bf36bbc4d633542b241d7dd1038994, type: 3}
 --- !u!1 &1369847337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,6 +2965,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5879074919217008183, guid: 99d9b52b82cc1b346ae68acedd72f0e4, type: 3}
   m_PrefabInstance: {fileID: 987102471}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1706198854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1706198855}
+  - component: {fileID: 1706198857}
+  - component: {fileID: 1706198856}
+  m_Layer: 5
+  m_Name: BattleMassage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1706198855
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706198854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1985995099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 206}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1706198856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706198854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 997a43b767814dd0a7642ec9b78cba41, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!222 &1706198857
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706198854}
+  m_CullTransparentMesh: 1
 --- !u!1 &1776060266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,6 +3234,10 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1348435268}
+    - target: {fileID: 7907800323172185597, guid: a0f7f730aeca05c4daeacbfdeccd928b, type: 3}
+      propertyPath: minAttackMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3589,6 +3681,7 @@ RectTransform:
   - {fileID: 1932590407}
   - {fileID: 1213502277}
   - {fileID: 812773852}
+  - {fileID: 1706198855}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

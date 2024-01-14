@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,10 +17,11 @@ public class MeleeButton : MonoBehaviour
 
     private void AttachCallback(string btn)
     {
-       
+
         if (btn.Equals("MeleeBtn"))
         {
             hero.GetComponent<FighterAction>().SelectAttack("melee");
+
         }
         else if (btn.Equals("RangeBtn"))
         {
@@ -30,4 +32,5 @@ public class MeleeButton : MonoBehaviour
             hero.GetComponent<FighterAction>().SelectAttack("run");
         }
     }
+
 }

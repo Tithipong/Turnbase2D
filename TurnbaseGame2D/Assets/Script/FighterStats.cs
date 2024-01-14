@@ -37,6 +37,8 @@ public class FighterStats : MonoBehaviour, IComparable
     private float xNewHealthScale;
     private float xNewMagicScale;
 
+    private GameObject GameController;
+
     void Awake()
     {
         healthTranform = healthFill.GetComponent<RectTransform>();
@@ -47,6 +49,8 @@ public class FighterStats : MonoBehaviour, IComparable
 
         startHealth = health;
         startMagic = magic;
+
+        GameController = GameObject.Find("GameControllerOBJ");
     }
 
     public void ReciveDamage(float damage)
@@ -68,13 +72,15 @@ public class FighterStats : MonoBehaviour, IComparable
         {
             xNewHealthScale = healthScale.x * (health / startHealth);
             healthFill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
+            GameController.GetComponent<GameController>().battleText.gameObject.SetActive(true);
+            GameController.GetComponent<GameController>().battleText.text = damage.ToString();
         }
-        Invoke(nameof(ContinueGame), 2);
+        Invoke(nameof(ContinueGame), 0.45f);
     }
 
     public void UpdateManaFill(float cost)
     {
-        if (cost < 1)
+        if (cost > 0)
         {
             magic -= cost;
             xNewMagicScale = magicScale.x * (magic / startMagic);
@@ -96,11 +102,11 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void CalculateNextTurn(int currentTurn)
     {
-        
+
         nextActTurn = currentTurn + Mathf.CeilToInt(100f / speed);
-        Debug.Log("currentTurn"+" " + currentTurn);
+        Debug.Log("currentTurn" + " " + currentTurn);
         Debug.Log("Mathf.CeilToInt(100f / speed)" + " " + Mathf.CeilToInt(100f / speed));
-        Debug.Log("nextActTurn"+" " + nextActTurn);
+        Debug.Log("nextActTurn" + " " + nextActTurn);
     }
 
     public int CompareTo(object otherStats)

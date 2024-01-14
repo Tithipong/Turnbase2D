@@ -18,13 +18,6 @@ public class ActtackScript : MonoBehaviour
     private FighterStats attackerStats;
     private FighterStats targetStats;
     private float damage = 0.0f;
-    private float xMagicScale;
-    private Vector2 magicScale;
-
-    private void Start()
-    {
-        magicScale = GameObject.Find("HeroMagicFill").GetComponent<RectTransform>().localScale;
-    }
 
     public void Attack(GameObject victim)
     {
@@ -35,24 +28,29 @@ public class ActtackScript : MonoBehaviour
         if (attackerStats.magic >= magicCost)
         {
             float multiplier = Random.Range(minAttackMultiplier, maxAttackMultiplier);
-            if (magicCost > 0)
-            {
-                attackerStats.UpdateManaFill(magicCost);
-            }
 
             damage = multiplier * attackerStats.melee;
             if (magicAttack)
             {
                 damage = multiplier * attackerStats.magicrange;
-                attackerStats.magic -= magicCost;
             }
-
             float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
             damage = Mathf.Max(0, damage - (defenseMultiplier * targetStats.defense));
-            
             owner.GetComponent<Animator>().Play(animationName);
-
-            targetStats.ReciveDamage(damage);
+            targetStats.ReciveDamage(MathF.Ceiling(damage));
+            attackerStats.UpdateManaFill(magicCost);
+        } 
+        else
+        {
+            owner.GetComponent<Animator>().Play("stun");
+            Invoke(nameof(SkipContinueGame), 0.45f);
         }
+    }
+    public void SkipContinueGame()
+    {
+        Debug.Log("ContinueGame Called");
+        
+        GameObject.Find("GameControllerOBJ").GetComponent<GameController>().NextTurn();
+        
     }
 }

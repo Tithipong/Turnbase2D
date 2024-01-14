@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
 public class GameController : MonoBehaviour
 {
+    public Text battleText;
     private List<FighterStats> fighterStats;
+    private Button[] buttons;
+    [SerializeField] private GameObject battleMenu;
 
-    [SerializeField]
-    private GameObject battleMenu;
 
     public void Start()
     {
@@ -23,21 +25,31 @@ public class GameController : MonoBehaviour
         FighterStats currentEnemyStats = enemy.GetComponent<FighterStats>();
         currentEnemyStats.CalculateNextTurn(0);
         fighterStats.Add(currentEnemyStats);
-
         fighterStats.Sort();
-        battleMenu.SetActive(false);
+
+        buttons = battleMenu.GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.onClick.AddListener(() => DisableAllButtons());
+        }
     }
 
+    void DisableAllButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.interactable = false;
+        }
+    }
 
     public void NextTurn()
     {
-        Debug.Log("Nextturn call");
+        battleText.gameObject.SetActive(false);
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
 
         if (!currentFighterStats.GetDead())
         {
-            Debug.Log("!currentFighterStats call");
             GameObject currentUnit = currentFighterStats.gameObject;
             currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn);
             fighterStats.Add(currentFighterStats);
@@ -45,20 +57,28 @@ public class GameController : MonoBehaviour
             Debug.Log(fighterStats);
             if (currentUnit.tag == "Hero")
             {
-                Debug.Log(currentFighterStats.gameObject.name + "Nextturn Method call");
                 battleMenu.SetActive(true);
+                foreach (Button button in buttons)
+                {
+                    button.interactable = true;
+                }
             }
             else
             {
+                battleMenu.SetActive(false);
+                foreach (Button button in buttons)
+                {
+                    button.interactable = false;
+                }
                 string attackType = Random.Range(0, 2) == 1 ? "melee" : "range";
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
-                Debug.Log(currentFighterStats.gameObject.name + "Nextturn Method call");
             }
         }
         else
         {
             NextTurn();
-            Debug.Log(currentFighterStats.gameObject.name + " is dead, skipping turn.");
         }
     }
+
+
 }

@@ -41,7 +41,7 @@ public class FighterAction : MonoBehaviour
             meleePrefab.GetComponent<ActtackScript>().Attack(victim);
 
         }
-        else if (btn.Equals("range"))//it the same
+        else if (btn.Equals("range"))
         {
             rangePrefab.GetComponent<ActtackScript>().Attack(victim);
         }
